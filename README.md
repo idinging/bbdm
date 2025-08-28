@@ -18,6 +18,9 @@
 	<span>u</span>
 </div>
 ```
+效果展示
+<img width="1667" height="910" alt="dispaly" src="https://github.com/user-attachments/assets/4253cbce-5918-49e9-aa6d-c5fdd9838360" />
+
 
 ## 可选：首屏文案（打字机）
 - 在 `index.html` 中搜索 `firstMsg`，将字符串替换为你的句子：
@@ -28,3 +31,4 @@ const firstMsg = '遇见你之后，星河有了名字，晚风也有了归期�
 ## 预览与发布
 - 预览：直接双击 `index.html` 打开。
 - 发布：将整个文件夹上传至任意静态空间（如 GitHub Pages/Netlify/Vercel 等）。
+
