@@ -1,7 +1,7 @@
 # 使用说明
 
 本项目是一个简单的告白页面，打开 `index.html` 即可预览。
-
+展示网址 ： https://izhou.iding.qzz.io/
 ## 必改：顶部漂浮文字（“修改文字”）
 - 文件：`index.html`
 - 位置：`<div class="container">` 内，紧跟 `<!-- 修改文字 -->` 的若干个 `<span>`。
@@ -31,4 +31,5 @@ const firstMsg = '遇见你之后，星河有了名字，晚风也有了归期�
 ## 预览与发布
 - 预览：直接双击 `index.html` 打开。
 - 发布：将整个文件夹上传至任意静态空间（如 GitHub Pages/Netlify/Vercel 等）。
+
 
