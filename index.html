@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Love</title>
+	<style>
+		html, body {
+			height: 100%;
+			padding: 0;
+			margin: 0;
+			background: radial-gradient(60% 60% at 50% 50%, #1a0024 0%, #0a0011 55%, #000 100%);
+			font-family: 'Microsoft YaHei', sans-serif;
+		}
+
+		.container {
+			position: fixed;
+			top: 20px;
+			width: 100%;
+			text-align: center;
+			z-index: 3;
+		}
+
+		.container span {
+			display: inline-block;
+			color: #ff69b4;
+			font-size: 24px;
+			margin: 0 5px;
+			animation: float 3s ease-in-out infinite;
+			text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+		}
+
+		.container span:nth-child(2n) {
+			animation-delay: 0.5s;
+		}
+
+		.container span:nth-child(3n) {
+			animation-delay: 1s;
+		}
+
+		@keyframes float {
+			0%, 100% {
+				transform: translateY(0);
+			}
+			50% {
+				transform: translateY(-20px);
+			}
+		}
+
+		.middle {
+			width: 100%;
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
+
+		/* 文案与按钮覆盖层 */
+		.overlay {
+			position: absolute;
+			top: 8%;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 3;
+			text-align: center;
+			width: 92%;
+		}
+
+		.typewriter {
+			color: #ffd6ec;
+			font-size: 22px;
+			letter-spacing: 1px;
+			text-shadow: 0 0 8px rgba(255, 105, 180, 0.55);
+			min-height: 1.6em;
+		}
+
+		.actions {
+			margin-top: 18px;
+			display: flex;
+			gap: 12px;
+			justify-content: center;
+		}
+
+		.btn {
+			padding: 10px 18px;
+			border-radius: 999px;
+			border: 1px solid rgba(255,255,255,0.25);
+			background: rgba(255, 105, 180, 0.15);
+			color: #ffe6f2;
+			cursor: pointer;
+			backdrop-filter: blur(2px);
+			transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
+		}
+
+		.btn:hover {
+			transform: translateY(-2px) scale(1.03);
+			background: rgba(255, 105, 180, 0.28);
+			box-shadow: 0 6px 20px rgba(255, 105, 180, .25);
+		}
+
+		.btn.yes { background: rgba(255,105,180,.35); }
+		.btn.no { background: rgba(255,255,255,.08); }
+
+		.heart-image {
+			max-width: 100%;
+			height: 100%;
+			animation: pulse 2s ease-in-out infinite;
+			object-fit: contain;
+		}
+
+		@keyframes pulse {
+			0%, 100% {
+				transform: scale(1);
+			}
+			50% {
+				transform: scale(1.05);
+			}
+		}
+
+		.particles {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+			z-index: 1;
+		}
+
+		.particle {
+			position: absolute;
+			width: 5px;
+			height: 5px;
+			background: #ff69b4;
+			border-radius: 50%;
+			animation: particleFloat 4s linear infinite;
+		}
+
+		@keyframes particleFloat {
+			0% {
+				transform: translateY(0) translateX(0);
+				opacity: 1;
+			}
+			100% {
+				transform: translateY(-100vh) translateX(100px);
+				opacity: 0;
+			}
+		}
+
+		/* 点击“愿意”后的小心心 */
+		.emoji-heart {
+			position: fixed;
+			z-index: 5;
+			pointer-events: none;
+			animation: rise 2.2s ease-in forwards;
+			filter: drop-shadow(0 0 6px rgba(255,105,180,.45));
+		}
+
+		@keyframes rise {
+			0% { transform: translateY(0) scale(0.9); opacity: 1; }
+			100% { transform: translateY(-140px) scale(1.5); opacity: 0; }
+		}
+
+		/* 电脑端样式 */
+		@media screen and (min-width: 1024px) {
+			.container span {
+				font-size: 32px;
+				margin: 0 10px;
+			}
+
+			.heart-image {
+				max-width: 85%;
+				height: 85%;
+			}
+
+			.typewriter { font-size: 26px; }
+
+			.particle {
+				width: 6px;
+				height: 6px;
+			}
+		}
+
+		/* 平板端样式 */
+		@media screen and (min-width: 768px) and (max-width: 1023px) {
+			.container span {
+				font-size: 28px;
+				margin: 0 8px;
+			}
+
+			.heart-image {
+				max-width: 90%;
+				height: auto;
+			}
+		}
+
+		/* 手机端样式 */
+		@media screen and (max-width: 767px) {
+			.container {
+				top: 10px;
+			}
+
+			.container span {
+				font-size: 30px;
+				margin-left: auto;
+			}
+
+			.heart-image {
+				max-width: 135%;
+				height: 115%;
+			}
+
+			.typewriter { font-size: 18px; }
+
+			.particle {
+				width: 4px;
+				height: 4px;
+			}
+
+			@keyframes float {
+				0%, 100% {
+					transform: translateY(0);
+				}
+				50% {
+					transform: translateY(-10px);
+				}
+			}
+		}
+
+		/* 横屏手机样式 */
+		@media screen and (max-width: 767px) and (orientation: landscape) {
+			.container {
+				top: 5px;
+			}
+
+			.container span {
+				font-size: 18px;
+				margin: 0 2px;
+			}
+
+			.heart-image {
+				max-width: 60%;
+				height: auto;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- 修改文字 -->
+		<span>i</span>
+		<span>z</span>
+		<span>h</span>
+		<span>o</span>
+		<span>u</span>
+
+	</div>
+
+	<div class="middle">
+		<div class="overlay">
+			<div class="typewriter" id="typewriter"></div>
+			<div class="actions">
+				<button class="btn yes" id="yesBtn">愿意</button>
+				<button class="btn no" id="noBtn">再想想</button>
+			</div>
+		</div>
+		<img src="./tpslove.gif" alt="爱心" class="heart-image">
+	</div>
+
+	<div class="particles" id="particles"></div>
+
+	<script nonce="MTE4MjQwOTEzNiwxNTQ0Nzk4NTQ3">
+		// 创建粒子效果
+		function createParticles() {
+			const particlesContainer = document.getElementById('particles');
+			const particleCount = window.innerWidth < 768 ? 30 : 50; // 手机端减少粒子数量
+			
+			for (let i = 0; i < particleCount; i++) {
+				const particle = document.createElement('div');
+				particle.className = 'particle';
+				particle.style.left = Math.random() * 100 + 'vw';
+				particle.style.animationDelay = Math.random() * 4 + 's';
+				particlesContainer.appendChild(particle);
+			}
+		}
+
+		// 打字机效果
+		function typeWriterEffect(element, text, speed) {
+			let index = 0;
+			const timer = setInterval(() => {
+				index++;
+				element.textContent = text.slice(0, index);
+				if (index >= text.length) clearInterval(timer);
+			}, speed);
+		}
+
+		// 小心心飘起
+		function burstHearts(x, y) {
+			const colors = ['#ff5ca3', '#ff8fd0', '#ffd6ec'];
+			for (let i = 0; i < 18; i++) {
+				const span = document.createElement('span');
+				span.className = 'emoji-heart';
+				span.textContent = '❤';
+				span.style.left = x + (Math.random()*40-20) + 'px';
+				span.style.top = y + (Math.random()*20-10) + 'px';
+				span.style.color = colors[Math.floor(Math.random()*colors.length)];
+				span.style.fontSize = (14 + Math.random()*12) + 'px';
+				document.body.appendChild(span);
+				setTimeout(() => span.remove(), 2400);
+			}
+		}
+
+		// 监听窗口大小变化
+		window.addEventListener('resize', () => {
+			const particlesContainer = document.getElementById('particles');
+			particlesContainer.innerHTML = '';
+			createParticles();
+		});
+
+		// 初始化
+		createParticles();
+		const tw = document.getElementById('typewriter');
+		const yesBtn = document.getElementById('yesBtn');
+		const noBtn = document.getElementById('noBtn');
+		const firstMsg = '遇见你之后，星河有了名字，晚风也有了归期。做我的TA，好吗？';
+		typeWriterEffect(tw, firstMsg, 80);
+
+		// 愿意
+		yesBtn.addEventListener('click', (e) => {
+			tw.textContent = '';
+			typeWriterEffect(tw, '耶！余生请多关照 ❤', 70);
+			burstHearts(e.clientX, e.clientY);
+		});
+
+		// 再想想：躲开
+		function dodge() {
+			const x = (Math.random()*220 - 110);
+			const y = (Math.random()*120 - 60);
+			noBtn.style.transform = `translate(${x}px, ${y}px)`;
+		}
+		noBtn.addEventListener('mouseenter', dodge);
+		noBtn.addEventListener('click', dodge);
+	</script>
+</body>
+</html>
